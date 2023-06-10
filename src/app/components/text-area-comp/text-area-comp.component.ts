@@ -15,6 +15,7 @@ export class TextAreaCompComponent implements OnChanges {
   textAreaCols: number | null = 100;
   textAreaRows: number | null = null;
   textAreaMaxlength: number | null = null
+  TextType: string = 'TEXTAREA';
   
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -22,9 +23,11 @@ export class TextAreaCompComponent implements OnChanges {
     let contentData = changes['TextAreaDataItem'].currentValue as DataCollectionItemList;
 
     if (contentData != null && contentData != undefined) {
+
       this.textAreaContentData = contentData;
       this.textAreaRows = this.textAreaContentData.nbr_row;
       this.textAreaMaxlength = this.textAreaContentData.nbr_char;
+      this.TextType =  this.textAreaContentData.cd_srvy_item_type === 'NOTE' ? 'TEXTAREA' : 'TEXT';
 
       if (contentData.response_items != null && contentData.response_items != undefined) {
         this.textAreaResponseContent = contentData.response_items.at(0);

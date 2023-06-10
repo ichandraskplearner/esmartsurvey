@@ -1,0 +1,16 @@
+<div class="pb-3" *ngIf="RadioListDataItem != null">
+    <label class="form-label">
+        <span class="text-danger text-bold" *ngIf='RadioListDataItem.ind_reqrd == "Y"'>*</span>  {{RadioListDataItem.txt_srvy_item}}
+    </label>
+</div>
+
+<ng-container *ngFor="let rItem of dataItemCollection">    
+    <div class="form-check form-check-inline">        
+        <input class="form-check-input" type="radio" [value]="rItem.id_survey_item_response">
+        <label class="form-check-label" for="inlineCheckbox2">{{rItem.txt_rspns}}</label>
+    </div>
+</ng-container>
+
+<div class="pt-3" *ngIf="dataItemClearSelectionEnabled">
+    <button type="button" class="btn btn-light border">Clear Selection</button>
+</div>

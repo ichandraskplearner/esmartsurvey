@@ -1,4 +1,8 @@
-<div class="form-group">
-    <!-- <label class="form-label">{{ textAreaContentData.txt_srvy_item }}</label> -->
-    <textarea class="form-control" cols="@textarea_width" rows="@item.nbr_row" maxlength=@item.nbr_char></textarea>    
+<div class="form-group">    
+    <label class="form-label" *ngIf="textAreaContentData != undefined && textAreaContentData != null"> 
+        <span class="text-danger" *ngIf='textAreaContentData.ind_reqrd == "Y"'>*</span> {{textAreaContentData.txt_srvy_item}}
+    </label>
+    <textarea class="form-control" [cols]="textAreaCols" [rows]="textAreaRows" [attr.maxlength]="textAreaMaxlength">
+        {{ textAreatText }}
+    </textarea>    
 </div>

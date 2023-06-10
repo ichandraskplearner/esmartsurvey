@@ -8,16 +8,31 @@ import { DataCollectionItemList, ResponseItem } from 'src/app/survey-form/surver
 })
 export class TextAreaCompComponent implements OnChanges {
 
-  textAreaContentData: any;
-  textAreaContent: any;
+  textAreaContentData: DataCollectionItemList | undefined;
+  textAreaResponseContent: ResponseItem | undefined;
+
+  textAreatText: string = "";
+  textAreaCols: number | null = 100;
+  textAreaRows: number | null = null;
+  textAreaMaxlength: number | null = null
   
+
   ngOnChanges(changes: SimpleChanges): void {
-   
+
     let contentData = changes['TextAreaDataItem'].currentValue as DataCollectionItemList;
 
-    if(contentData != null && contentData != undefined)
-    {
+    if (contentData != null && contentData != undefined) {
       this.textAreaContentData = contentData;
+      this.textAreaRows = this.textAreaContentData.nbr_row;
+      this.textAreaMaxlength = this.textAreaContentData.nbr_char;
+
+      if (contentData.response_items != null && contentData.response_items != undefined) {
+        this.textAreaResponseContent = contentData.response_items.at(0);
+
+        if (this.textAreaResponseContent != null && this.textAreaResponseContent.txt_rspns_client != null && this.textAreaResponseContent.txt_rspns_client != undefined) {
+          this.textAreatText = this.textAreaResponseContent.txt_rspns_client;         
+        }
+      }
     }
   }
 

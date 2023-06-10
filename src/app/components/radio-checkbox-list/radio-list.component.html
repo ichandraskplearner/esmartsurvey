@@ -6,7 +6,7 @@
 
 <ng-container *ngFor="let rItem of dataItemCollection">    
     <div class="form-check form-check-inline">        
-        <input class="form-check-input" type="radio" [value]="rItem.id_survey_item_response">
+        <input class="form-check-input" [type]="dataItemType" [value]="rItem.id_survey_item_response">
         <label class="form-check-label" for="inlineCheckbox2">{{rItem.txt_rspns}}</label>
     </div>
 </ng-container>

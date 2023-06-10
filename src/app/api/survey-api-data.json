@@ -142,7 +142,7 @@
                     "ind_selected":null
                  }
               ]
-           },
+           },           
            {
               "id_survey_item":637,
               "id_survey_language":101,
@@ -290,7 +290,7 @@
                     "ind_selected":""
                  }
               ]
-           },
+           },           
            {
               "id_survey_item":716,
               "id_survey_language":101,
@@ -316,6 +316,182 @@
                     "txt_rspns_client":null,
                     "dt_rspns":null,
                     "ind_selected":null
+                 }
+              ]
+           },
+           {
+              "id_survey_item":715,
+              "id_survey_language":101,
+              "cd_srvy_item_type":"TEXT",
+              "nbr_char":100,
+              "nbr_row":2,
+              "cd_srvy_group":null,
+              "nbr_sort_order":2,
+              "ind_reqrd":"N",
+              "txt_srvy_item":"Comments:",
+              "nm_srvy_item":"KNPB_4",
+              "item_error_message":null,
+              "txt_invalid_date":null,
+              "response_items":[
+                 {
+                    "id_survey_item_response":null,
+                    "id_survey_item":null,
+                    "txt_rspns":null,
+                    "txt_rspns_value":null,
+                    "nbr_sort_order":null,
+                    "id_regstrtn_clnt_srvy_rspns":null,
+                    "id_registration_client_survey":null,
+                    "txt_rspns_client":null,
+                    "dt_rspns":null,
+                    "ind_selected":null
+                 }
+              ]
+           },
+            {
+              "id_survey_item":637,
+              "id_survey_language":101,
+              "cd_srvy_item_type":"CHECKBOX",
+              "nbr_char":0,
+              "nbr_row":0,
+              "cd_srvy_group":null,
+              "nbr_sort_order":3,
+              "ind_reqrd":"Y",
+              "txt_srvy_item":"3. Briefly state the reason for the kinship caregiver placement: (choose best option) ",
+              "nm_srvy_item":"KNPB_3",
+              "item_error_message":null,
+              "txt_invalid_date":null,
+              "response_items":[
+                 {
+                    "id_survey_item_response":2230,
+                    "id_survey_item":637,
+                    "txt_rspns":"Substance misuse/substance abuse by parent",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":1,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
+                 },
+                 {
+                    "id_survey_item_response":2231,
+                    "id_survey_item":637,
+                    "txt_rspns":"Domestic violence involving parents or a parent",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":2,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
+                 },
+                 {
+                    "id_survey_item_response":2232,
+                    "id_survey_item":637,
+                    "txt_rspns":"Physical or sexual abuse by parent(s)",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":3,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
+                 },
+                 {
+                    "id_survey_item_response":2233,
+                    "id_survey_item":637,
+                    "txt_rspns":"Child left with caregiver ",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":4,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
+                 },
+                 {
+                    "id_survey_item_response":2234,
+                    "id_survey_item":637,
+                    "txt_rspns":"Parent incarcerated ",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":5,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
+                 },
+                 {
+                    "id_survey_item_response":2235,
+                    "id_survey_item":637,
+                    "txt_rspns":"Parent in mental health facility ",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":6,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
+                 },
+                 {
+                    "id_survey_item_response":2236,
+                    "id_survey_item":637,
+                    "txt_rspns":"Parent in substance abuse facility ",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":7,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
+                 },
+                 {
+                    "id_survey_item_response":2237,
+                    "id_survey_item":637,
+                    "txt_rspns":"Parental death ",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":8,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
+                 },
+                 {
+                    "id_survey_item_response":2238,
+                    "id_survey_item":637,
+                    "txt_rspns":"Other: (comment below)",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":9,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
+                 },
+                 {
+                    "id_survey_item_response":2239,
+                    "id_survey_item":637,
+                    "txt_rspns":"Unknown",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":10,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
+                 },
+                 {
+                    "id_survey_item_response":2240,
+                    "id_survey_item":637,
+                    "txt_rspns":"NA - Not applicable",
+                    "txt_rspns_value":"1",
+                    "nbr_sort_order":11,
+                    "id_regstrtn_clnt_srvy_rspns":0,
+                    "id_registration_client_survey":0,
+                    "txt_rspns_client":"",
+                    "dt_rspns":null,
+                    "ind_selected":""
                  }
               ]
            }

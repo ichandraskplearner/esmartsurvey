@@ -11,6 +11,8 @@ export class RadioListComponent implements OnChanges {
   @Input()
   RadioListDataItem: DataCollectionItemList | undefined;
 
+  dataItemType: string = 'checkbox';
+
   dataItemCollection: ResponseItem[] = [];
   dataItemClearSelectionEnabled: boolean = true;
 
@@ -19,6 +21,7 @@ export class RadioListComponent implements OnChanges {
       changes['RadioListDataItem'].currentValue as DataCollectionItemList;
 
     if (radioDataCollection != null && radioDataCollection != undefined) {
+      this.dataItemType =  radioDataCollection.cd_srvy_item_type === 'CHECKBOX' ? 'checkbox' : 'radio';
       this.RadioListDataItem = radioDataCollection;
       this.dataItemClearSelectionEnabled = radioDataCollection.ind_reqrd != "True";
       this.dataItemCollection = radioDataCollection.response_items as ResponseItem[];

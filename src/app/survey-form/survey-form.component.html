@@ -16,10 +16,16 @@
         </div>
         <div class="p-2 row" *ngSwitchCase="'SINGLESEL'">
             <app-radio-list [RadioListDataItem]="surveyItem"></app-radio-list>
+        </div> 
+        <div class="p-2 row" *ngSwitchCase="'CHECKBOX'">
+            <app-radio-list [RadioListDataItem]="surveyItem"></app-radio-list>
         </div>       
         <div class="p-2 row" *ngSwitchCase="'NOTE'">
             <app-text-area-comp [TextAreaDataItem]="surveyItem"></app-text-area-comp>
         </div>
+        <div class="p-2 row" *ngSwitchCase="'TEXT'">
+            <app-text-area-comp [TextAreaDataItem]="surveyItem"></app-text-area-comp>
+        </div>       
     </ng-container>
 </ng-container>
 </div>

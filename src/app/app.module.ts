@@ -7,6 +7,7 @@ import { RadioListComponent } from './components/radio-checkbox-list/radio-list.
 import { TextAreaCompComponent } from './components/text-area-comp/text-area-comp.component';
 import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,12 @@
+<div class="pb-3" *ngIf="DropDownDataItem != null">
+    <label class="form-label">
+        <span class="text-danger text-bold" *ngIf='DropDownDataItem.ind_reqrd == "Y"'>*</span>  {{DropDownDataItem.txt_srvy_item}}
+    </label>
+</div>
+
+<select class="form-select" aria-label="Default select example">
+    <ng-container *ngFor="let rItem of optionItemCollection">
+        <option [value]="rItem.id_survey_item_response">{{rItem.txt_rspns}}</option>
+    </ng-container>   
+  </select>
+  

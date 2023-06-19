@@ -25,6 +25,9 @@
         </div>
         <div class="p-2 row" *ngSwitchCase="'TEXT'">
             <app-text-area-comp [TextAreaDataItem]="surveyItem"></app-text-area-comp>
+        </div>
+        <div class="p-2 row" *ngSwitchCase="'SINGLESELDD'">
+            <app-dropdown-list [DropDownDataItem]="surveyItem"></app-dropdown-list>
         </div>       
     </ng-container>
 </ng-container>

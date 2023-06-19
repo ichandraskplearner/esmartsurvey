@@ -8,13 +8,15 @@ import { TextAreaCompComponent } from './components/text-area-comp/text-area-com
 import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DropdownListComponent } from './components/dropdown-list/dropdown-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RadioListComponent,
     TextAreaCompComponent,
-    SurveyFormComponent
+    SurveyFormComponent,
+    DropdownListComponent
   ],
   imports: [
     BrowserModule,

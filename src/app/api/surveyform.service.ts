@@ -12,6 +12,6 @@ export class SurveyFormService {
 
     getData() : Observable<any> {
         return of(SURVEYAPIDATA["surveyContent"]);
-        return this.http.get<any>('');
+        //return this.http.get<any>('');
     }
 }

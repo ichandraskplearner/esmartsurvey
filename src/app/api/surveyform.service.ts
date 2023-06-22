@@ -14,4 +14,9 @@ export class SurveyFormService {
         return of(SURVEYAPIDATA["surveyContent"]);
         //return this.http.get<any>('');
     }
+
+    postData(data: any) {
+        console.log(data);
+        //this.http.post('', JSON.stringify(data))
+    }
 }

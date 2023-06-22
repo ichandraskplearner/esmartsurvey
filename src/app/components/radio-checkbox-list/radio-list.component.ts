@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { DataCollectionItemList, ResponseItem } from 'src/app/survey-form/survery-form.component.model';
 
 @Component({
@@ -9,7 +9,10 @@ import { DataCollectionItemList, ResponseItem } from 'src/app/survey-form/surver
 export class RadioListComponent implements OnChanges {
 
   @Input()
-  RadioListDataItem: DataCollectionItemList | undefined;
+  MultiSelectionData: DataCollectionItemList | undefined;
+
+  @Output()
+  OnSelectionDataChanges: EventEmitter<DataCollectionItemList> = new EventEmitter<DataCollectionItemList>();
 
   dataItemType: string = 'checkbox';
 
@@ -18,15 +21,49 @@ export class RadioListComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     let radioDataCollection =
-      changes['RadioListDataItem'].currentValue as DataCollectionItemList;
+      changes['MultiSelectionData'].currentValue as DataCollectionItemList;
 
     if (radioDataCollection != null && radioDataCollection != undefined) {
-      this.dataItemType =  radioDataCollection.cd_srvy_item_type === 'CHECKBOX' ? 'checkbox' : 'radio';
-      this.RadioListDataItem = radioDataCollection;
+      this.dataItemType = radioDataCollection.cd_srvy_item_type === 'CHECKBOX' ? 'checkbox' : 'radio';
+      this.MultiSelectionData = radioDataCollection;
       this.dataItemClearSelectionEnabled = radioDataCollection.ind_reqrd != "True";
       this.dataItemCollection = radioDataCollection.response_items as ResponseItem[];
-      console.log(radioDataCollection['response_items']);
     }
   }
 
+  clearAllSelection() {
+    this.dataItemCollection.forEach((v, i) => {
+      v.ind_selected = "";
+    });
+    this.MakeUpdates();
+  }
+
+  selectionChanged(data: any, indexValue: number) {
+    console.log(data);
+
+    if (this.dataItemType === 'checkbox') {
+      this.dataItemCollection[indexValue].ind_selected = data.srcElement.checked === true ? "Y" : "";
+    }
+    else {
+      this.dataItemCollection.forEach((v, i) => {
+        if (i == indexValue) {
+          v.ind_selected = "Y";
+        }
+        else {
+          v.ind_selected = "";
+        }
+      });
+    }
+
+    console.log(this.dataItemCollection);
+
+    this.MakeUpdates();
+  }
+
+  private MakeUpdates() {
+    if (this.MultiSelectionData != null && this.MultiSelectionData != undefined) {
+      this.MultiSelectionData.response_items = this.dataItemCollection;
+      this.OnSelectionDataChanges.emit(this.MultiSelectionData);
+    }
+  }
 }

@@ -1,34 +1,37 @@
 <div class="shadow-sm p-3 mb-5 bg-light  rounded" *ngIf="surveyFormContent != null && surveyFormContent != undefined">
-     <h4>{{surveyFormContent.nm_survey}}</h4>
+    <h4>{{surveyFormContent.nm_survey}}</h4>
 </div>
 
 <div class="p-3">
-<ng-container *ngFor="let surveyItem of surveyFormDataItemCollection">
-    <ng-container [ngSwitch]="surveyItem.cd_srvy_item_type">
-        <div class="p-2 row" *ngSwitchCase="'HEADING'">
-            <h5>{{surveyItem.txt_srvy_item}}</h5>
-        </div>
-        <div class="p-2 row" *ngSwitchCase="'DIVIDELINE'">
-            <hr/>
-        </div>
-        <div class="p-2 row" *ngSwitchCase="'INSTR'">
-            <em>{{surveyItem.txt_srvy_item}}</em>
-        </div>
-        <div class="p-2 row" *ngSwitchCase="'SINGLESEL'">
-            <app-radio-list [RadioListDataItem]="surveyItem"></app-radio-list>
-        </div> 
-        <div class="p-2 row" *ngSwitchCase="'CHECKBOX'">
-            <app-radio-list [RadioListDataItem]="surveyItem"></app-radio-list>
-        </div>       
-        <div class="p-2 row" *ngSwitchCase="'NOTE'">
-            <app-text-area-comp [TextAreaDataItem]="surveyItem"></app-text-area-comp>
-        </div>
-        <div class="p-2 row" *ngSwitchCase="'TEXT'">
-            <app-text-area-comp [TextAreaDataItem]="surveyItem"></app-text-area-comp>
-        </div>
-        <div class="p-2 row" *ngSwitchCase="'SINGLESELDD'">
-            <app-dropdown-list [DropDownDataItem]="surveyItem"></app-dropdown-list>
-        </div>       
+    <ng-container *ngFor="let surveyItem of surveyFormDataItemCollection">
+        <ng-container [ngSwitch]="surveyItem.cd_srvy_item_type">
+            <div class="p-2 row" *ngSwitchCase="'HEADING'">
+                <h5>{{surveyItem.txt_srvy_item}}</h5>
+            </div>
+            <div class="p-2 row" *ngSwitchCase="'DIVIDELINE'">
+                <hr />
+            </div>
+            <div class="p-2 row" *ngSwitchCase="'INSTR'">
+                <em>{{surveyItem.txt_srvy_item}}</em>
+            </div>
+            <div class="p-2 row" *ngSwitchCase="'SINGLESEL'">
+                <app-radio-list [MultiSelectionData]="surveyItem"></app-radio-list>
+            </div>
+            <div class="p-2 row" *ngSwitchCase="'CHECKBOX'">
+                <app-radio-list [MultiSelectionData]="surveyItem" (OnSelectionDataChanges)="OnDataChanges($event)"></app-radio-list>
+            </div>
+            <div class="p-2 row" *ngSwitchCase="'NOTE'">
+                <app-text-area-comp [TextAreaDataItem]="surveyItem" (OnSelectionDataChanges)="OnDataChanges($event)"></app-text-area-comp>
+            </div>
+            <div class="p-2 row" *ngSwitchCase="'TEXT'">
+                <app-text-area-comp [TextAreaDataItem]="surveyItem"></app-text-area-comp>
+            </div>
+            <div class="p-2 row" *ngSwitchCase="'SINGLESELDD'">
+                <app-dropdown-list [DropDownDataItem]="surveyItem"></app-dropdown-list>
+            </div>
+        </ng-container>
     </ng-container>
-</ng-container>
+</div>
+<div class="p-3">
+    <button type="button" class="btn btn-primary" (click)="SubmitSurvey()">Submit</button>
 </div>

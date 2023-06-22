@@ -16,17 +16,34 @@ export class SurveyFormComponent implements OnInit {
   constructor(private suveryformApi: SurveyFormService) {
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.fetchDataFromApi();
   }
 
 
+  OnDataChanges(data: any) {
+    console.log(this.surveyFormContent);
+    if (this.surveyFormContent != null && this.surveyFormContent != undefined) {
+      let indexOfDataItem =
+        this.surveyFormContent.data_collection_item_list.findIndex((r, i) => {
+          r.id_survey_item == data.id_survey_item
+        });
+
+      this.surveyFormContent.data_collection_item_list[indexOfDataItem] = data as DataCollectionItemList;
+    }
+    console.log(this.surveyFormContent);
+  }
+
   fetchDataFromApi() {
     this.suveryformApi.getData().subscribe(result => {
       console.log(result);
-        this.surveyFormContent = JSON.parse(JSON.stringify(result)) as DataCollection;
-        this.surveyFormDataItemCollection = this.surveyFormContent.data_collection_item_list;
+      this.surveyFormContent = JSON.parse(JSON.stringify(result)) as DataCollection;
+      this.surveyFormDataItemCollection = this.surveyFormContent.data_collection_item_list;
     });
+  }
+
+  SubmitSurvey() {
+    this.suveryformApi.postData(this.surveyFormContent);
   }
 
 }

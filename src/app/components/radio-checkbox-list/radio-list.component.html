@@ -1,20 +1,21 @@
-<div class="pb-3" *ngIf="RadioListDataItem != null">
+<div class="pb-3" *ngIf="MultiSelectionData != null">
     <label class="form-label">
-        <span class="text-danger text-bold" *ngIf='RadioListDataItem.ind_reqrd == "Y"'>*</span>  {{RadioListDataItem.txt_srvy_item}}
+        <span class="text-danger text-bold" *ngIf='MultiSelectionData.ind_reqrd == "Y"'>*</span>  {{MultiSelectionData.txt_srvy_item}}
     </label>
 </div>
 
-<ng-container *ngFor="let rItem of dataItemCollection">    
+<ng-container *ngFor="let rItem of dataItemCollection; let i = index">    
 <ng-container *ngIf="dataItemType !== 'checkbox'">
     <div class="form-check form-check-inline">        
-        <input class="form-check-input" [name]="rItem.id_survey_item"  [type]="dataItemType" [value]="rItem.id_survey_item_response">
+        <input class="form-check-input" [name]="rItem.id_survey_item"  [type]="dataItemType" [value]="rItem.id_survey_item_response" (change)="selectionChanged($event, i)" 
+        [checked]='rItem.ind_selected === "Y"'>
         <label class="form-check-label" for="inlineCheckbox2">{{rItem.txt_rspns}}</label>
     </div>
 </ng-container>
 
 <ng-container *ngIf="dataItemType === 'checkbox'">
     <div class="form-check form-check-inline">        
-        <input class="form-check-input" [type]="dataItemType" [value]="rItem.id_survey_item_response">
+        <input class="form-check-input" [type]="dataItemType" [value]="rItem.id_survey_item_response" (change)="selectionChanged($event, i)" [checked]='rItem.ind_selected === "Y"'>
         <label class="form-check-label" for="inlineCheckbox2">{{rItem.txt_rspns}}</label>
     </div>
 </ng-container>
@@ -22,5 +23,5 @@
 </ng-container>
 
 <div class="pt-3" *ngIf="dataItemClearSelectionEnabled">
-    <button type="button" class="btn btn-light border">Clear Selection</button>
+    <button type="button" class="btn btn-light border" (click)="clearAllSelection()">Clear Selection</button>
 </div>

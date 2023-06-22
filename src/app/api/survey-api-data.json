@@ -18,7 +18,7 @@
            {
               "id_survey_item":635,
               "id_survey_language":101,
-              "cd_srvy_item_type":"SINGLESEL",
+              "cd_srvy_item_type":"CHECKBOX",
               "nbr_char":0,
               "nbr_row":0,
               "cd_srvy_group":null,
@@ -87,7 +87,7 @@
                     "id_registration_client_survey":0,
                     "txt_rspns_client":"",
                     "dt_rspns":null,
-                    "ind_selected":""
+                    "ind_selected":"Y"
                  },
                  {
                     "id_survey_item_response":2228,
@@ -167,7 +167,7 @@
                     "id_registration_client_survey":0,
                     "txt_rspns_client":"",
                     "dt_rspns":null,
-                    "ind_selected":""
+                    "ind_selected":"Y"
                  },
                  {
                     "id_survey_item_response":2231,

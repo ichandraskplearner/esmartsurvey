@@ -137,7 +137,7 @@
                     "nbr_sort_order":null,
                     "id_regstrtn_clnt_srvy_rspns":null,
                     "id_registration_client_survey":null,
-                    "txt_rspns_client":null,
+                    "txt_rspns_client":"test data for text",
                     "dt_rspns":null,
                     "ind_selected":null
                  }

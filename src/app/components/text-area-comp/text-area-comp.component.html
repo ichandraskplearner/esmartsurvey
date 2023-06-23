@@ -1,11 +1,19 @@
-<div class="form-group">    
-    <label class="form-label" *ngIf="textAreaContentData != undefined && textAreaContentData != null"> 
-        <span class="text-danger" *ngIf='textAreaContentData.ind_reqrd == "Y"'>*</span> {{textAreaContentData.txt_srvy_item}}
+<div class="form-group">
+    <label class="form-label" *ngIf="textAreaContentData != undefined && textAreaContentData != null">
+        <span class="text-danger" *ngIf='textAreaContentData.ind_reqrd == "Y"'>*</span>
+        {{textAreaContentData.txt_srvy_item}}
     </label>
 
-    <textarea class="form-control" [cols]="textAreaCols" [rows]="textAreaRows" [attr.maxlength]="textAreaMaxlength" *ngIf="TextType === 'TEXTAREA'">
-        {{ textAreatText }}
-    </textarea> 
-    
-    <input type="text" style="width:50%" class="form-control" [value]="textAreatText" [attr.maxlength]="textAreaMaxlength" *ngIf="TextType === 'TEXT'"/>  
+    <textarea class="form-control" [cols]="textAreaCols" [rows]="textAreaRows" [attr.maxlength]="textAreaMaxlength"
+        [ngModel] = "textAreatText"
+        (ngModelChange)="OnTextDataChange($event)"
+        [ngModelOptions]="{updateOn: 'blur'}"
+        *ngIf="TextType === 'TEXTAREA'">        
+    </textarea>
+
+    <input type="text" style="width:50%" class="form-control" 
+        [ngModel] = "textAreatText"
+        (ngModelChange)="OnTextDataChange($event)"
+        [ngModelOptions]="{updateOn: 'blur'}"
+        [attr.maxlength]="textAreaMaxlength" *ngIf="TextType === 'TEXT'" />
 </div>

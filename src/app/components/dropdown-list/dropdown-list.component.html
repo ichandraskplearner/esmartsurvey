@@ -1,12 +1,16 @@
 <div class="pb-3" *ngIf="DropDownDataItem != null">
     <label class="form-label">
-        <span class="text-danger text-bold" *ngIf='DropDownDataItem.ind_reqrd == "Y"'>*</span>  {{DropDownDataItem.txt_srvy_item}}
+        <span class="text-danger text-bold" *ngIf='DropDownDataItem.ind_reqrd == "Y"'>*</span>
+        {{DropDownDataItem.txt_srvy_item}}
     </label>
 </div>
 
-<select class="form-select" aria-label="Default select example">
+<select class="form-select" [ngModel]="selectedOptionItem" (ngModelChange)="OnSelectionOptionChange($event)">
     <ng-container *ngFor="let rItem of optionItemCollection">
         <option [value]="rItem.id_survey_item_response">{{rItem.txt_rspns}}</option>
-    </ng-container>   
-  </select>
-  
+    </ng-container>
+</select>
+
+<div class="pt-3" *ngIf="dataItemClearSelectionEnabled">
+    <button type="button" class="btn btn-light border" (click)="clearAllSelection()">Clear Selection</button>
+</div>

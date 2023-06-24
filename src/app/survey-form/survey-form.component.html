@@ -27,7 +27,7 @@
                 <app-text-area-comp [TextAreaDataItem]="surveyItem" (OnComponentDataChange)="OnDataChanges($event)"></app-text-area-comp>
             </div>
             <div class="p-2 row" *ngSwitchCase="'SINGLESELDD'">
-                <app-dropdown-list [DropDownDataItem]="surveyItem"></app-dropdown-list>
+                <app-dropdown-list [DropDownDataItem]="surveyItem" (OnSelectionDataChanges)="OnDataChanges($event)"></app-dropdown-list>
             </div>
         </ng-container>
     </ng-container>

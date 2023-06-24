@@ -347,10 +347,10 @@
                  }
               ]
            },
-            {
+           {
               "id_survey_item":637,
               "id_survey_language":101,
-              "cd_srvy_item_type":"CHECKBOX",
+              "cd_srvy_item_type":"SINGLESELDD",
               "nbr_char":0,
               "nbr_row":0,
               "cd_srvy_group":null,

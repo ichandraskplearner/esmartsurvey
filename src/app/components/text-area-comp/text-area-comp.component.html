@@ -16,4 +16,10 @@
         (ngModelChange)="OnTextDataChange($event)"
         [ngModelOptions]="{updateOn: 'blur'}"
         [attr.maxlength]="textAreaMaxlength" *ngIf="TextType === 'TEXT'" />
+
+    <input type="number" style="width:50%" class="form-control" 
+        [ngModel] = "textAreatText"
+        (ngModelChange)="OnTextDataChange($event)"
+        [ngModelOptions]="{updateOn: 'blur'}"
+        [attr.maxlength]="textAreaMaxlength" *ngIf="TextType === 'NUMERIC'" />
 </div>

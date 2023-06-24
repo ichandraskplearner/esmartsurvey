@@ -11,7 +11,7 @@ export class TextAreaCompComponent implements OnChanges {
   textAreaContentData: DataCollectionItemList | undefined;
   textAreaResponseContent: ResponseItem | undefined;
 
-  textAreatText: string = "";
+  textAreatText: any;
   textAreaCols: number | null = 100;
   textAreaRows: number | null = null;
   textAreaMaxlength: number | null = null
@@ -27,7 +27,19 @@ export class TextAreaCompComponent implements OnChanges {
       this.textAreaContentData = contentData;
       this.textAreaRows = this.textAreaContentData.nbr_row;
       this.textAreaMaxlength = this.textAreaContentData.nbr_char;
-      this.TextType = this.textAreaContentData.cd_srvy_item_type === 'NOTE' ? 'TEXTAREA' : 'TEXT';
+      switch(this.textAreaContentData.cd_srvy_item_type)
+      {
+        case 'NOTE' : 
+          this.TextType = 'TEXTAREA';
+          break;
+        case 'TEXT' : 
+          this.TextType = 'TEXT';
+          break;
+        case 'NUMERIC' : 
+          this.TextType = 'NUMERIC';
+          break;
+      }
+      //this.TextType = this.textAreaContentData.cd_srvy_item_type === 'NOTE' ? 'TEXTAREA' : 'TEXT';
 
       if (contentData.response_items != null && contentData.response_items != undefined) {
         this.textAreaResponseContent = contentData.response_items.at(0);

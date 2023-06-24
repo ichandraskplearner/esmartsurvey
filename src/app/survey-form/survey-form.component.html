@@ -26,6 +26,9 @@
             <div class="p-2 row" *ngSwitchCase="'TEXT'">
                 <app-text-area-comp [TextAreaDataItem]="surveyItem" (OnComponentDataChange)="OnDataChanges($event)"></app-text-area-comp>
             </div>
+            <div class="p-2 row" *ngSwitchCase="'NUMERIC'">
+                <app-text-area-comp [TextAreaDataItem]="surveyItem" (OnComponentDataChange)="OnDataChanges($event)"></app-text-area-comp>
+            </div>
             <div class="p-2 row" *ngSwitchCase="'SINGLESELDD'">
                 <app-dropdown-list [DropDownDataItem]="surveyItem" (OnSelectionDataChanges)="OnDataChanges($event)"></app-dropdown-list>
             </div>

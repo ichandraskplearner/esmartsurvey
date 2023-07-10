@@ -34,8 +34,6 @@ export interface DataCollection {
 
 }
 
-
-
 export interface DataCollectionItemList {
 
     id_survey_item: number
@@ -66,8 +64,6 @@ export interface DataCollectionItemList {
 
 }
 
-
-
 export interface ResponseItem {
 
     id_survey_item_response?: number
@@ -91,3 +87,55 @@ export interface ResponseItem {
     ind_selected?: string
 
 }
+
+export class QuestionBase<T> {
+    value: T|undefined;
+    key: string;
+    label: string;
+    required: boolean;
+    order: number;
+    controlType: string;
+    type: string;
+    options: {key: string | undefined, value: string | undefined}[];
+    columns: number = 100;
+    rows?: number;
+    maxlength?: number;
+  
+    constructor(options: {
+        value?: T;
+        key?: string;
+        label?: string;
+        required?: boolean;
+        order?: number;
+        controlType?: string;
+        type?: string;
+        options?: {key: string | undefined, value: string | undefined }[];  
+        columns?: number;
+        rows?: number;
+        maxlength?: number;     
+      } = {}) {
+      this.value = options.value;
+      this.key = options.key || '';
+      this.label = options.label || '';
+      this.required = !!options.required;
+      this.order = options.order === undefined ? 1 : options.order;
+      this.controlType = options.controlType || '';
+      this.type = options.type || '';
+      this.options = options.options || [];
+      this.columns = options.columns || 100;
+      this.rows = options.rows;
+      this.maxlength = options.maxlength;
+    }
+}
+
+export class TextboxQuestion extends QuestionBase<string> {
+  override controlType = 'textbox';
+}
+
+export class TextareaQuestion extends QuestionBase<string> {
+    override controlType = 'textarea';
+  }
+
+export class DropDownQuestion extends QuestionBase<string> {
+    override controlType = 'dropdown';
+  }

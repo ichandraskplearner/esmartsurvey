@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DropdownListComponent } from './components/dropdown-list/dropdown-list.component';
 import { CommonModule } from '@angular/common';
+import { SurveyQuestionComponent } from './survey-question/survey-question.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CommonModule } from '@angular/common';
     RadioListComponent,
     TextAreaCompComponent,
     SurveyFormComponent,
-    DropdownListComponent
+    DropdownListComponent,
+    SurveyQuestionComponent
   ],
   imports: [    
     ReactiveFormsModule,

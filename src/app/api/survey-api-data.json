@@ -123,7 +123,7 @@
               "nbr_row":2,
               "cd_srvy_group":null,
               "nbr_sort_order":2,
-              "ind_reqrd":"N",
+              "ind_reqrd":"Y",
               "txt_srvy_item":"If you selected \"Other\" in question 1:",
               "nm_srvy_item":"KNPB_4",
               "item_error_message":null,

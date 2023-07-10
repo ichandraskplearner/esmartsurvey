@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import SURVEYAPIDATA from '../api/survey-api-data.json';
-import { DataCollection, DataCollectionItemList } from './survery-form.component.model';
+import { DataCollection, DataCollectionItemList, QuestionBase } from './survery-form.component.model';
 import { SurveyFormService } from '../api/surveyform.service';
+import { SurveyFormControlService } from './survey-form-control.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-survey-form',
@@ -9,15 +11,25 @@ import { SurveyFormService } from '../api/surveyform.service';
   styleUrls: ['./survey-form.component.scss']
 })
 export class SurveyFormComponent implements OnInit {
-
+  
+  surveyForm: FormGroup;
+  surveyQuestions: QuestionBase<string>[] = [];
   surveyFormContent: DataCollection | undefined;
   surveyFormDataItemCollection: DataCollectionItemList[] = [];
 
-  constructor(private suveryformApi: SurveyFormService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private suveryformApi: SurveyFormService,
+    private surveyFormControlService: SurveyFormControlService) {
+      this.surveyForm = this.formBuilder.group({});
   }
 
   ngOnInit(): void {
     this.fetchDataFromApi();
+
+    this.surveyQuestions = this.surveyFormControlService.getSurveyQuestions(this.surveyFormDataItemCollection);
+    console.log(this.surveyQuestions);
+    this.surveyForm = this.surveyFormControlService.getSurveyForm(this.surveyQuestions);
   }
 
 
@@ -38,11 +50,12 @@ export class SurveyFormComponent implements OnInit {
     this.suveryformApi.getData().subscribe(result => {
       console.log(result);
       this.surveyFormContent = JSON.parse(JSON.stringify(result)) as DataCollection;
-      this.surveyFormDataItemCollection = this.surveyFormContent.data_collection_item_list;
+      this.surveyFormDataItemCollection = this.surveyFormContent.data_collection_item_list;     
     });
   }
 
   SubmitSurvey() {
+    console.log(this.surveyForm);    
     this.suveryformApi.postData(this.surveyFormContent);
   }
 

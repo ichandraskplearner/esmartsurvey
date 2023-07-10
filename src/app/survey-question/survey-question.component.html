@@ -1,0 +1,19 @@
+<div [formGroup]="form" class="form-group">
+    <label [attr.for]="question.key" class="form-label">{{question.label}}</label>
+
+    <div [ngSwitch]="question.controlType" class="p-2 row">
+
+        <textarea *ngSwitchCase="'textarea'" [formControlName]="question.key" [id]="question.key"
+            [value]="question.value" [cols]="question.columns" [rows]="question.rows"
+            [attr.maxlength]="question.maxlength" class="form-control"></textarea>
+
+        <select *ngSwitchCase="'dropdown'" [id]="question.key"  [formControlName]="question.key" class="form-select">
+            <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+        </select>
+
+    </div>
+
+    <div class="errorMessage" *ngIf="!isValid"> This field is required</div>
+</div>
+
+

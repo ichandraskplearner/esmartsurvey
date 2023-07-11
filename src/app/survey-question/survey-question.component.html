@@ -3,17 +3,36 @@
 
     <div [ngSwitch]="question.controlType" class="p-2 row">
 
+        <div *ngSwitchCase="'checkbox'">
+            <ng-container *ngFor="let opt of question.options">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" [id]="opt.key" type="checkbox" [value]="opt.key" [formControlName]="question.key" />
+                    <label class="form-check-label" for="inlineCheckbox2">{{opt.value}}</label>
+                </div>
+            </ng-container>
+        </div>
+
         <textarea *ngSwitchCase="'textarea'" [formControlName]="question.key" [id]="question.key"
             [value]="question.value" [cols]="question.columns" [rows]="question.rows"
             [attr.maxlength]="question.maxlength" class="form-control"></textarea>
 
-        <select *ngSwitchCase="'dropdown'" [id]="question.key"  [formControlName]="question.key" class="form-select">
+        <input *ngSwitchCase="'textbox'" type="text" style="width:50%" class="form-control"
+            [formControlName]="question.key" [id]="question.key" [value]="question.value"
+            [attr.maxlength]="question.maxlength" />
+
+        <select *ngSwitchCase="'dropdown'" [id]="question.key" [formControlName]="question.key" class="form-select">
             <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
         </select>
-
+        
+        <div *ngSwitchCase="'radiobutton'">
+            <ng-container *ngFor="let ropt of question.options">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" [id]="ropt.key" type="radio" [value]="ropt.key" [formControlName]="question.key" />
+                    <label class="form-check-label" for="inlineRadiobutton2">{{ropt.value}}</label>
+                </div>
+            </ng-container>
+        </div>
     </div>
 
     <div class="errorMessage" *ngIf="!isValid"> This field is required</div>
 </div>
-
-

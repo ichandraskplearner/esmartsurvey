@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DataCollectionItemList, DropDownQuestion, QuestionBase, TextareaQuestion } from './survery-form.component.model';
+import { CheckboxQuestion, DataCollectionItemList, DropDownQuestion, QuestionBase, RadiobuttonQuestion, TextareaQuestion, TextboxQuestion } from './survery-form.component.model';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Injectable({
@@ -31,13 +31,53 @@ export class SurveyFormControlService {
                 maxlength: q.nbr_char
               })
             );
+          break;          
+          case "TEXT":
+            surveyQuestions.push(
+              new TextboxQuestion({
+                key: q.id_survey_item.toString(),
+                label: q.txt_srvy_item,
+                value: q.response_items[0].txt_rspns_client,
+                required: q.ind_reqrd == "Y",
+                order: 1,   
+                columns: 100,                       
+                rows: q.nbr_row,
+                maxlength: q.nbr_char
+              })
+            );
+          break;          
+          case "SINGLESEL":
+            surveyQuestions.push(
+              new RadiobuttonQuestion({
+                key: q.id_survey_item.toString(),
+                label: q.txt_srvy_item,
+                value: q.response_items[0].txt_rspns_client || '',
+                required: q.ind_reqrd == "Y",
+                order: 1,                   
+                columns: 100,
+                options: q.response_items.map((resItem, i) => { return { key: resItem.id_survey_item_response?.toString(),  value: resItem.txt_rspns} })
+              })
+            );
+          break;
+          case "CHECKBOX":
+            surveyQuestions.push(
+              new CheckboxQuestion({
+                key: q.id_survey_item.toString(),
+                label: q.txt_srvy_item,
+                value: q.response_items[0].txt_rspns_client || '',
+                required: q.ind_reqrd == "Y",
+                order: 1,                   
+                columns: 100,
+                options: q.response_items.map((resItem, i) => { return { key: resItem.id_survey_item_response?.toString(),  value: resItem.txt_rspns} })
+              })
+            );
           break;
           case "SINGLESELDD":
             surveyQuestions.push(
               new DropDownQuestion({
                 key: q.id_survey_item.toString(),
                 label: q.txt_srvy_item,
-                value: q.response_items[0].txt_rspns_client,
+                value: q.response_items[0].txt_rspns_client || '',
                 required: q.ind_reqrd == "Y",
                 order: 1,                   
                 columns: 100,
@@ -61,7 +101,7 @@ export class SurveyFormControlService {
         group[question.key] = question.required ? new FormControl(question.value || '', Validators.required)
                                                 : new FormControl(question.value || '');
       });
-      return new FormGroup(group);
+      return new FormGroup(group, {'updateOn': 'submit'});
     
   }
 }

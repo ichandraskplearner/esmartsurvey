@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./survey-form.component.scss']
 })
 export class SurveyFormComponent implements OnInit {
-  
+
   surveyForm: FormGroup;
   surveyQuestions: QuestionBase<string>[] = [];
   surveyFormContent: DataCollection | undefined;
@@ -21,7 +21,7 @@ export class SurveyFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private suveryformApi: SurveyFormService,
     private surveyFormControlService: SurveyFormControlService) {
-      this.surveyForm = this.formBuilder.group({});
+    this.surveyForm = this.formBuilder.group({});
   }
 
   ngOnInit(): void {
@@ -30,32 +30,43 @@ export class SurveyFormComponent implements OnInit {
     this.surveyQuestions = this.surveyFormControlService.getSurveyQuestions(this.surveyFormDataItemCollection);
     console.log(this.surveyQuestions);
     this.surveyForm = this.surveyFormControlService.getSurveyForm(this.surveyQuestions);
+    console.log(this.surveyForm);
   }
 
 
-  OnDataChanges(data: any) {
-    console.log(this.surveyFormContent);
-    if (this.surveyFormContent != null && this.surveyFormContent != undefined) {
-      let indexOfDataItem =
-        this.surveyFormContent.data_collection_item_list.findIndex((r, i) => {
-          r.id_survey_item == data.id_survey_item
-        });
+  UpdateDataChanges() {
 
-      this.surveyFormContent.data_collection_item_list[indexOfDataItem] = data as DataCollectionItemList;
-    }
-    console.log(this.surveyFormContent);
+    Object.keys(this.surveyForm.controls).forEach(key => {
+      if (this.surveyFormContent != null && this.surveyFormContent != undefined) {
+        console.log(key);
+        let indexOfDataItem =
+          this.surveyFormContent.data_collection_item_list.findIndex((r, i) => 
+            r.id_survey_item.toString() === key.toString()
+          );
+          console.log(indexOfDataItem);
+        if (this.surveyFormContent.data_collection_item_list[indexOfDataItem].cd_srvy_item_type == 'NOTE' ||
+          this.surveyFormContent.data_collection_item_list[indexOfDataItem].cd_srvy_item_type == 'TEXT') {
+            console.log(this.surveyForm.get(key)?.value);
+          this.surveyFormContent.data_collection_item_list[indexOfDataItem].response_items[0].txt_rspns_client = this.surveyForm.get(key)?.value;
+        }
+      }
+
+    });
+
+
   }
 
   fetchDataFromApi() {
     this.suveryformApi.getData().subscribe(result => {
       console.log(result);
       this.surveyFormContent = JSON.parse(JSON.stringify(result)) as DataCollection;
-      this.surveyFormDataItemCollection = this.surveyFormContent.data_collection_item_list;     
+      this.surveyFormDataItemCollection = this.surveyFormContent.data_collection_item_list;
     });
   }
 
   SubmitSurvey() {
-    console.log(this.surveyForm);    
+    console.log(this.surveyForm);
+    this.UpdateDataChanges();
     this.suveryformApi.postData(this.surveyFormContent);
   }
 

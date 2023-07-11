@@ -128,6 +128,14 @@ export class QuestionBase<T> {
     }
 }
 
+export class RadiobuttonQuestion extends QuestionBase<string> {
+  override controlType = 'radiobutton';
+}
+
+export class CheckboxQuestion extends QuestionBase<string> {
+  override controlType = 'checkbox';
+}
+
 export class TextboxQuestion extends QuestionBase<string> {
   override controlType = 'textbox';
 }

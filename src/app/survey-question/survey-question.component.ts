@@ -10,5 +10,5 @@ import { QuestionBase } from '../survey-form/survery-form.component.model';
 export class SurveyQuestionComponent {
   @Input() question!: QuestionBase<string>;
   @Input() form!: FormGroup;
-  get isValid() { return this.form.controls[this.question.key].untouched || this.form.controls[this.question.key].valid; }
+  get isValid() { return this.form.controls[this.question.key].valid; }
 }

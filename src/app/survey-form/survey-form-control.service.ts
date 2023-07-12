@@ -153,9 +153,10 @@ export class SurveyFormControlService {
   getSurveyForm(questions: QuestionBase<string>[]) {    
       const group: any = {};
   
-      questions.forEach(question => {
-        group[question.key] = question.required ? new FormControl(question.value || '', Validators.required)
-                                                : new FormControl(question.value || '');
+      questions.forEach(question => {              
+        group[question.key] = question.required ? new FormControl(question.value || '', { 'updateOn': 'submit', 'validators': Validators.required}, )
+                                                : new FormControl(question.value || '', { 'updateOn': 'submit' });
+                                                
       });
       return new FormGroup(group, {'updateOn': 'submit'});
     

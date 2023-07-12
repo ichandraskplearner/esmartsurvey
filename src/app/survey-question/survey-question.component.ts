@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { QuestionBase } from '../survey-form/survery-form.component.model';
 
 @Component({
@@ -11,7 +11,9 @@ export class SurveyQuestionComponent {
 
   @Input() question!: QuestionBase<string>;
   @Input() form!: FormGroup;
-  get isValid() { return this.form.controls[this.question.key].valid; }
+  get isValid() { 
+    return this.form.controls[this.question.key].untouched || this.form.controls[this.question.key].valid;
+   }
 
   clearAllSelection(controlKey: any) {
     debugger;

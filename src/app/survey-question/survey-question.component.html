@@ -7,13 +7,13 @@
     <div [ngSwitch]="question.controlType" class="p-2 row">
 
         <div class="p-2 row" *ngSwitchCase="'heading'">
-            <h5>{{question.label}</h5>
+            <h5>{{question.value}}</h5>
         </div>
         <div class="p-2 row" *ngSwitchCase="'divideline'">
             <hr />
         </div>
         <div class="p-2 row" *ngSwitchCase="'instr'">
-            <em>{{question.label}</em>
+            <em>{{question.value}}</em>
         </div>
 
         <div *ngSwitchCase="'checkbox'">
@@ -54,6 +54,5 @@
     <div class="pt-3" *ngIf="!question.required && (question.controlType == 'radiobutton' || question.controlType == 'dropdown' || question.controlType == 'checkbox')">
         <button type="button" class="btn btn-light border" (click)="clearAllSelection(question.key)">Clear Selection</button>
     </div>
-
     <div class="errorMessage" *ngIf="!isValid"> This field is required</div>
 </div>

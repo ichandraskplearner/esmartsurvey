@@ -38,6 +38,8 @@ export class SurveyFormComponent implements OnInit {
 
     Object.keys(this.surveyForm.controls).forEach(key => {
       if (this.surveyFormContent != null && this.surveyFormContent != undefined) {
+        this.surveyForm.get(key)?.markAsTouched();
+        this.surveyForm.get(key)?.updateValueAndValidity();
         console.log(key);
         let indexOfDataItem =
           this.surveyFormContent.data_collection_item_list.findIndex((r, i) =>
@@ -60,7 +62,7 @@ export class SurveyFormComponent implements OnInit {
           this.surveyFormContent.data_collection_item_list[indexOfDataItem].response_items.forEach((ri, index) => {
             console.log(this.surveyForm.get(key)?.value);
             let test = parseInt(this.surveyForm.get(key)?.value, 10);
-            if (ri.id_survey_item_response == parseInt(this.surveyForm.get(key)?.value, 10) as number | undefined) {              
+            if (ri.id_survey_item_response == parseInt(this.surveyForm.get(key)?.value, 10) as number | undefined) {
               ri.ind_selected = "Y"
             }
             else {
@@ -86,7 +88,10 @@ export class SurveyFormComponent implements OnInit {
   SubmitSurvey() {
     console.log(this.surveyForm);
     this.UpdateDataChanges();
-    this.suveryformApi.postData(this.surveyFormContent);
+    console.log(this.surveyForm.status);
+    if (this.surveyForm.valid) {
+      this.suveryformApi.postData(this.surveyFormContent);
+    }
   }
 
 }

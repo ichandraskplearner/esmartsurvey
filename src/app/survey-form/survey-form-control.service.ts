@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CheckboxQuestion, DataCollectionItemList, DropDownQuestion, NumericTextboxQuestion, QuestionBase, RadiobuttonQuestion, TextareaQuestion, TextboxQuestion } from './survery-form.component.model';
+import { CheckboxQuestion, DataCollectionItemList, DividelineQuestion, DropDownQuestion, HeadingQuestion, InstrQuestion, NumericTextboxQuestion, QuestionBase, RadiobuttonQuestion, TextareaQuestion, TextboxQuestion } from './survery-form.component.model';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Injectable({
@@ -96,6 +96,48 @@ export class SurveyFormControlService {
                 order: 1,                   
                 columns: 100,
                 options: q.response_items.map((resItem, i) => { return { key: resItem.id_survey_item_response?.toString(),  value: resItem.txt_rspns} })
+              })
+            );
+          break;
+          case "HEADING":
+            surveyQuestions.push(
+              new HeadingQuestion({
+                key: q.id_survey_item.toString(),
+                label: '',
+                value: q.txt_srvy_item,
+                required: false,
+                order: 1,   
+                columns: 100,                       
+                rows: 0,
+                maxlength: 100
+              })
+            );
+          break;
+          case "DIVIDELINE":
+            surveyQuestions.push(
+              new DividelineQuestion({
+                key: q.id_survey_item.toString(),
+                label: '',
+                value: '',
+                required: false,
+                order: 1,   
+                columns: 100,                       
+                rows: 0,
+                maxlength: 100
+              })
+            );
+          break;
+          case "INSTR":
+            surveyQuestions.push(
+              new InstrQuestion({
+                key: q.id_survey_item.toString(),
+                label: '',
+                value: q.txt_srvy_item,
+                required: false,
+                order: 1,   
+                columns: 100,                       
+                rows: 0,
+                maxlength: 100
               })
             );
           break;

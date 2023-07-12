@@ -132,6 +132,17 @@ export class RadiobuttonQuestion extends QuestionBase<string> {
   override controlType = 'radiobutton';
 }
 
+export class HeadingQuestion extends QuestionBase<string> {
+  override controlType = 'heading';
+}
+export class DividelineQuestion extends QuestionBase<string> {
+  override controlType = 'divideline';
+}
+
+export class InstrQuestion extends QuestionBase<string> {
+  override controlType = 'instr';
+}
+
 export class CheckboxQuestion extends QuestionBase<string> {
   override controlType = 'checkbox';
 }

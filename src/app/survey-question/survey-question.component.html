@@ -6,6 +6,16 @@
 
     <div [ngSwitch]="question.controlType" class="p-2 row">
 
+        <div class="p-2 row" *ngSwitchCase="'heading'">
+            <h5>{{question.label}</h5>
+        </div>
+        <div class="p-2 row" *ngSwitchCase="'divideline'">
+            <hr />
+        </div>
+        <div class="p-2 row" *ngSwitchCase="'instr'">
+            <em>{{question.label}</em>
+        </div>
+
         <div *ngSwitchCase="'checkbox'">
             <ng-container *ngFor="let opt of question.options">                
                 <div class="form-check form-check-inline">

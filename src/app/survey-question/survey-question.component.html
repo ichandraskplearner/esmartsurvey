@@ -1,10 +1,13 @@
 <div [formGroup]="form" class="form-group">
-    <label [attr.for]="question.key" class="form-label">{{question.label}}</label>
+    <label [attr.for]="question.key" class="form-label">
+        <span class="text-danger text-bold" *ngIf='question.required'>*</span>
+        {{question.label}}
+    </label>
 
     <div [ngSwitch]="question.controlType" class="p-2 row">
 
         <div *ngSwitchCase="'checkbox'">
-            <ng-container *ngFor="let opt of question.options">
+            <ng-container *ngFor="let opt of question.options">                
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" [id]="opt.key" type="checkbox" [value]="opt.key" [formControlName]="question.key" />
                     <label class="form-check-label" for="inlineCheckbox2">{{opt.value}}</label>
@@ -20,6 +23,10 @@
             [formControlName]="question.key" [id]="question.key" [value]="question.value"
             [attr.maxlength]="question.maxlength" />
 
+        <input *ngSwitchCase="'textboxnumeric'" type="number" style="width:50%" class="form-control"
+            [formControlName]="question.key" [id]="question.key" [value]="question.value"
+            [attr.maxlength]="question.maxlength" />
+
         <select *ngSwitchCase="'dropdown'" [id]="question.key" [formControlName]="question.key" class="form-select">
             <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
         </select>
@@ -32,6 +39,10 @@
                 </div>
             </ng-container>
         </div>
+    </div>
+
+    <div class="pt-3" *ngIf="!question.required && (question.controlType == 'radiobutton' || question.controlType == 'dropdown' || question.controlType == 'checkbox')">
+        <button type="button" class="btn btn-light border" (click)="clearAllSelection(question.key)">Clear Selection</button>
     </div>
 
     <div class="errorMessage" *ngIf="!isValid"> This field is required</div>

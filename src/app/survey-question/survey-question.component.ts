@@ -8,7 +8,14 @@ import { QuestionBase } from '../survey-form/survery-form.component.model';
   styleUrls: ['./survey-question.component.scss']
 })
 export class SurveyQuestionComponent {
+
   @Input() question!: QuestionBase<string>;
   @Input() form!: FormGroup;
   get isValid() { return this.form.controls[this.question.key].valid; }
+
+  clearAllSelection(controlKey: any) {
+    debugger;
+    this.form.get(controlKey)?.setValue(null);
+  }
+
 }

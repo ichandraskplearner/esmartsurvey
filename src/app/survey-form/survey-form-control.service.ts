@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CheckboxQuestion, DataCollectionItemList, DropDownQuestion, QuestionBase, RadiobuttonQuestion, TextareaQuestion, TextboxQuestion } from './survery-form.component.model';
+import { CheckboxQuestion, DataCollectionItemList, DropDownQuestion, NumericTextboxQuestion, QuestionBase, RadiobuttonQuestion, TextareaQuestion, TextboxQuestion } from './survery-form.component.model';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Injectable({
@@ -45,7 +45,21 @@ export class SurveyFormControlService {
                 maxlength: q.nbr_char
               })
             );
-          break;          
+          break;
+          case "NUMERIC":
+            surveyQuestions.push(
+              new NumericTextboxQuestion({
+                key: q.id_survey_item.toString(),
+                label: q.txt_srvy_item,
+                value: q.response_items[0].txt_rspns_client,
+                required: q.ind_reqrd == "Y",
+                order: 1,   
+                columns: 100,                       
+                rows: q.nbr_row,
+                maxlength: q.nbr_char
+              })
+            );
+          break;            
           case "SINGLESEL":
             surveyQuestions.push(
               new RadiobuttonQuestion({

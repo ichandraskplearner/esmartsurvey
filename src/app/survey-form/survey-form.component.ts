@@ -40,14 +40,33 @@ export class SurveyFormComponent implements OnInit {
       if (this.surveyFormContent != null && this.surveyFormContent != undefined) {
         console.log(key);
         let indexOfDataItem =
-          this.surveyFormContent.data_collection_item_list.findIndex((r, i) => 
-            r.id_survey_item.toString() === key.toString()
+          this.surveyFormContent.data_collection_item_list.findIndex((r, i) =>
+            r.id_survey_item === parseInt(key, 10)
           );
-          console.log(indexOfDataItem);
+
+        console.log(indexOfDataItem);
+
+        // TEXTAREA, TEXTBOX, NUMERIC DATA CHANGES
         if (this.surveyFormContent.data_collection_item_list[indexOfDataItem].cd_srvy_item_type == 'NOTE' ||
-          this.surveyFormContent.data_collection_item_list[indexOfDataItem].cd_srvy_item_type == 'TEXT') {
-            console.log(this.surveyForm.get(key)?.value);
+          this.surveyFormContent.data_collection_item_list[indexOfDataItem].cd_srvy_item_type == 'TEXT' ||
+          this.surveyFormContent.data_collection_item_list[indexOfDataItem].cd_srvy_item_type == 'NUMERIC') {
+          console.log(this.surveyForm.get(key)?.value);
           this.surveyFormContent.data_collection_item_list[indexOfDataItem].response_items[0].txt_rspns_client = this.surveyForm.get(key)?.value;
+        }
+
+        // DROPDOWN, RADIOBUTTON
+        if (this.surveyFormContent.data_collection_item_list[indexOfDataItem].cd_srvy_item_type == 'SINGLESELDD' ||
+          this.surveyFormContent.data_collection_item_list[indexOfDataItem].cd_srvy_item_type == 'SINGLESEL') {
+          this.surveyFormContent.data_collection_item_list[indexOfDataItem].response_items.forEach((ri, index) => {
+            console.log(this.surveyForm.get(key)?.value);
+            let test = parseInt(this.surveyForm.get(key)?.value, 10);
+            if (ri.id_survey_item_response == parseInt(this.surveyForm.get(key)?.value, 10) as number | undefined) {              
+              ri.ind_selected = "Y"
+            }
+            else {
+              ri.ind_selected = "";
+            }
+          });
         }
       }
 

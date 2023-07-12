@@ -140,6 +140,10 @@ export class TextboxQuestion extends QuestionBase<string> {
   override controlType = 'textbox';
 }
 
+export class NumericTextboxQuestion extends QuestionBase<string> {
+  override controlType = 'textboxnumeric';
+}
+
 export class TextareaQuestion extends QuestionBase<string> {
     override controlType = 'textarea';
   }
